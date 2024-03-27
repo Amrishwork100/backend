@@ -1,8 +1,10 @@
 spring:
   application:
     name: spring-circutbreaker-resilience4j
+
 server:
   port: 6060
+
 resilience4j:
   circuitbreaker:
     instances:
@@ -16,6 +18,11 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+  retry:
+    instances:
+      spring-circutbreaker-resilience4j:
+        maxRetryAttempts: 3
+        waitDuration: 5s
 
 management:
   health:

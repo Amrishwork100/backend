@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CircuitBreakerService {
+public class RetryService {
+
     @Autowired
     private PaymentClient paymentClient;
 
-    public List<Payment> paymentHistory() {
-        return paymentClient.getPaymentHistory();
+    public List<Payment> retryPaymentHistory() {
+        return paymentClient.getRetryPaymentHistory();
     }
-
-
 }
