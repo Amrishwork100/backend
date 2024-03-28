@@ -10,6 +10,8 @@ import lombok.*;
 public class Payment {
 
     private String id;
+
+    private String item;
     private double amount;
     private String paymentDate;
 

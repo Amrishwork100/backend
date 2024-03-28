@@ -38,8 +38,8 @@ public class PaymentClient {
 
     public List<Payment> getPaymentHistoryFallback(Exception ex) {
         log.info("Inside a Circuit Breaker Fault Tolerance method");
-        return Stream.of(new Payment(getUUID(), 800.00, "12-07-2024"),
-                        new Payment(getUUID(), 100.00, "12-07-2024"))
+        return Stream.of(new Payment(getUUID(), "Dell Laptop", 80000.00, "12-03-2024"),
+                        new Payment(getUUID(), "Mac laptop", 100000.00, "12-03-2024"))
                 .toList();
 
     }
@@ -59,8 +59,8 @@ public class PaymentClient {
 
     public List<Payment> getRetryPaymentHistoryFallback(Exception ex) {
         log.info("Inside a Retry Fault Tolerance method " + LocalDateTime.now());
-        return Stream.of(new Payment(getUUID(), 2000.00, "12-07-2024"),
-                        new Payment(getUUID(), 1500.00, "12-07-2024"))
+        return Stream.of(new Payment(getUUID(), "Dell Laptop",2000.00, "12-07-2024"),
+                        new Payment(getUUID(),"Lenovo Laptop", 1500.00, "12-07-2024"))
                 .toList();
 
     }
