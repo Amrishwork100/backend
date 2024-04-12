@@ -1,10 +1,13 @@
-package com.login.app;
+package com.iTech.loginservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LoginAppApplicationTests {
+class LoginServiceApplicationTests {
 
+	@Test
+	void contextLoads() {
+	}
 
 }

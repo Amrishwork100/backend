@@ -1,13 +1,13 @@
-package com.login.app;
+package com.itech.login.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LoginAppApplication {
+public class LoginServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LoginAppApplication.class, args);
+		SpringApplication.run(LoginServiceApplication.class, args);
 	}
 
 }

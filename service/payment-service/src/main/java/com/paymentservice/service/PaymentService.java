@@ -2,6 +2,7 @@ package com.paymentservice.service;
 
 import com.paymentservice.entity.Payment;
 import com.paymentservice.repository.PaymentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +11,24 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
     public List<Payment> getPaymentHistory() {
-        return paymentRepository.findAll();
+        List<Payment> payments = paymentRepository.findAll();
+        payments.forEach(payment -> {
+            log.info(" Fetch all payment info {} : ", payment);
+        });
+        return payments;
     }
 
     public Payment createPayment(Payment payment) {
         payment.setId(getUUID());
-        return paymentRepository.save(payment);
+        Payment pay = paymentRepository.save(payment);
+        log.info(" Accept the payment from users {} : ", pay);
+        return pay;
     }
 
     private String getUUID() {
@@ -29,6 +37,7 @@ public class PaymentService {
 
     public Payment getPaymentById(String id) {
         Optional<Payment> optionalPayment = paymentRepository.findById(id);
-        return optionalPayment.get();
+        log.info(" Fetch all payment info {} : ",optionalPayment);
+        return optionalPayment.orElse(null);
     }
 }

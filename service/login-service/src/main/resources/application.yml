@@ -1,16 +1,14 @@
 spring:
   application:
-    name: payment-service
-server:
-  port: 9090
----
-spring:
+    name: LOGIN-SERVICE
+
+
   jpa:
     hibernate:
       ddl-auto: update
       database-platform: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/PAYMENT-STORE?createDatabaseIfNotExist=true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/USER?createDatabaseIfNotExist=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
