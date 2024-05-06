@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class TokenResponse {
+public class JwtTokenResponse {
     private String token;
     private String email;
 

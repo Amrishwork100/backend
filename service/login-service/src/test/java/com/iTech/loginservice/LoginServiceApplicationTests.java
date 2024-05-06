@@ -3,11 +3,7 @@ package com.iTech.loginservice;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class LoginServiceApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 
 }

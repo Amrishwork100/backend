@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRegistrationRepository extends JpaRepository<UserRegistration,String> {
 
+    UserRegistration findByEmail(String email);
 }

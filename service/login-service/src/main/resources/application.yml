@@ -30,3 +30,5 @@ management:
 spring:
   zipkin:
     baseUrl: http://localhost:9411/
+  main:
+    allow-circular-references: true
