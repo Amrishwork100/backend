@@ -1,6 +1,6 @@
 package com.itech.login.app.service;
 
-import com.itech.login.app.entity.UserRegistration;
+import com.itech.login.app.entity.UserData;
 import com.itech.login.app.model.JwtTokenResponse;
 import com.itech.login.app.model.UserCredential;
 import com.itech.login.app.repository.UserRegistrationRepository;
@@ -20,10 +20,10 @@ public class UserRegistrationService {
 
     private final JwtAuthenticationService authenticationService;
 
-    public ResponseEntity<String> saveUser(UserRegistration userRegistration) {
+    public ResponseEntity<String> saveUser(UserData userData) {
 
         try {
-            repository.save(userRegistration);
+            repository.save(userData);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("User is not inserted in database {} ", e.getMessage());
@@ -36,15 +36,15 @@ public class UserRegistrationService {
     public ResponseEntity<JwtTokenResponse> fetchAndValidateUser(UserCredential user) {
         JwtTokenResponse response = new JwtTokenResponse();
         try {
-            UserRegistration userRegistration = repository.findByEmail(user.getEmail());
+            UserData userData = repository.findByEmail(user.getEmail());
             String authToken = authenticationService.generateToken(new HashMap<>(), user.getEmail());
-            if (org.apache.commons.lang3.ObjectUtils.isNotEmpty(userRegistration)) {
-                if (!userRegistration.getPassword().equals(user.getPassword())) {
+            if (org.apache.commons.lang3.ObjectUtils.isNotEmpty(userData)) {
+                if (!userData.getPassword().equals(user.getPassword())) {
                     throw new RuntimeException("user credential invalid");
                 }
                 response = JwtTokenResponse.builder()
                         .token(authToken)
-                        .email(userRegistration.getUsername())
+                        .email(userData.getUsername())
                         .build();
                 return ResponseEntity.ok(response);
             }
@@ -55,14 +55,14 @@ public class UserRegistrationService {
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<String> updateProfile(UserRegistration userRegistration) {
-        UserRegistration registration = repository.findByEmail(userRegistration.getEmail());
-        if (!registration.getUserFullName().equalsIgnoreCase(userRegistration.getUserFullName())) {
-            registration.setUserFullName(userRegistration.getUserFullName());
-        } else if (!registration.getEmail().equalsIgnoreCase(userRegistration.getEmail())) {
-            registration.setEmail(userRegistration.getEmail());
-        } else if (!registration.getMobile().equalsIgnoreCase(userRegistration.getMobile())) {
-            registration.setMobile(userRegistration.getMobile());
+    public ResponseEntity<String> updateProfile(UserData userData) {
+        UserData registration = repository.findByEmail(userData.getEmail());
+        if (!registration.getUserFullName().equalsIgnoreCase(userData.getUserFullName())) {
+            registration.setUserFullName(userData.getUserFullName());
+        } else if (!registration.getEmail().equalsIgnoreCase(userData.getEmail())) {
+            registration.setEmail(userData.getEmail());
+        } else if (!registration.getMobile().equalsIgnoreCase(userData.getMobile())) {
+            registration.setMobile(userData.getMobile());
         }
         return ResponseEntity.ok("profile updated");
     }

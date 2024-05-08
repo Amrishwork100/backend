@@ -8,7 +8,7 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.iTech</groupId>
+	<groupId>com.itech</groupId>
 	<artifactId>login-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login-service</name>

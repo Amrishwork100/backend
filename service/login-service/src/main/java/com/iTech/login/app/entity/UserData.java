@@ -15,7 +15,7 @@ import java.util.Collection;
 @EqualsAndHashCode
 @Entity
 @Table(name = "USER_REGISTRATION")
-public class UserRegistration implements UserDetails {
+public class UserData implements UserDetails {
 
     @Id
     private String id;
