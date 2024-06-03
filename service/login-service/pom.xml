@@ -8,11 +8,11 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.itech</groupId>
-	<artifactId>login-service</artifactId>
+	<groupId>com.itech.login</groupId>
+	<artifactId>com.itech.login</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login-service</name>
-	<description>Login-Service project for Spring Boot</description>
+	<description>Login-Service</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

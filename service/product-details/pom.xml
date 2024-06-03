@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.itech.productdetails</groupId>
-	<artifactId>com.itech.productdetails</artifactId>
+	<artifactId>product-details</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>product-detail-service</name>
 	<description>ProductDetail-Service</description>

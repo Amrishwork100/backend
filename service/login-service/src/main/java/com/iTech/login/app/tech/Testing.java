@@ -1,4 +1,4 @@
-package com.itech.login.app;
+package com.itech.login.app.tech;
 
 import java.util.List;
 import java.util.stream.Stream;

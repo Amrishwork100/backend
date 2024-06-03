@@ -1,4 +1,4 @@
-package com.itech.login.app;
+package com.itech.login.app.tech;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
