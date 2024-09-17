@@ -1,4 +1,4 @@
-package com.itech.login.tech;
+package org.example.tech;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +14,16 @@ import java.util.stream.Collectors;
 public class Demo {
     public static void main(String[] args) {
         // Question 3
-        Employee employee = new Employee(1, "Rahul", 30, "Technology");
+        Employee employee1 = new Employee(1, "A", 30, "J");
+        Employee employee2 = new Employee(2, "B", 40, "P");
+        Employee employee3 = new Employee(3, "C", 25, "J");
         List<Employee> first = new ArrayList<>();
-        first.add(employee);
+        first.add(employee1);
+        first.add(employee2);
+        first.add(employee3);
         Map<String,List<Employee>> grp = first.stream().collect(Collectors.groupingBy(Employee::getDeptName));
 
+        System.out.println(grp);
         List<List<Employee>> second = new ArrayList<>();
         second.add(first);
         List<List<List<Employee>>> emps = new ArrayList<>();
@@ -30,7 +35,7 @@ public class Demo {
                         l.stream()
                                 .flatMap(Collection::stream))
                 .toList();
-        System.out.println(newList);
+        //System.out.println(newList);
 
 
     }
@@ -38,15 +43,3 @@ public class Demo {
 
 }
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-class  Employee{
-
-    private int id;
-    private String name;
-    private int age;
-    private String deptName;
-
-}

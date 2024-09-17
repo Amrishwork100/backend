@@ -1,4 +1,5 @@
-package com.itech.login.tech;
+/*
+package org.example.tech;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -61,3 +62,4 @@ public class JsonArrayToXML {
         System.out.println(" <------------- XML TO JSON -------------> " + json);
     }
 }
+*/

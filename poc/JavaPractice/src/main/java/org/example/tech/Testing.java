@@ -1,4 +1,4 @@
-package com.itech.login.tech;
+package org.example.tech;
 
 import java.util.List;
 import java.util.stream.Stream;
