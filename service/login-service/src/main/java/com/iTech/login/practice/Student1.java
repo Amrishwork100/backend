@@ -1,4 +1,4 @@
-package com.itech.login;
+package com.itech.login.practice;
 
 import lombok.Data;
 

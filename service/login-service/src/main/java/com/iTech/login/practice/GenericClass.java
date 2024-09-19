@@ -1,4 +1,4 @@
-package com.itech.login.utils;
+package com.itech.login.practice;
 
 public class GenericClass<T> {
     T t1Obj;

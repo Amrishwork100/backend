@@ -1,8 +1,5 @@
-package com.itech.login;
+package com.itech.login.practice;
 
-import com.itech.login.utils.GenericClass;
-
-import javax.crypto.spec.PSource;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -103,6 +100,36 @@ public class Delta {
         Integer integer1 = genericClass1.get();
         System.out.println(integer1);
         System.out.println("<<==== end  ===>>>>");
+
+
+        String[] array1 = {"one", "two", "three"};
+        String[] array2 = {"four", "five", "six"};
+        Stream<String[]> streamStringArray = Stream.of(array1, array2);
+        List<String> res = streamStringArray
+                .flatMap(Arrays::stream)
+                .toList();
+        System.out.println(res);
+        System.out.println("<<==== end ====>>>>");
+
+        List<String> worder = Arrays.asList("hello", "Java", "world");
+
+        List<String> uniqueLetters = worder.stream()
+                .map(word -> word.split(","))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .toList();
+        System.out.println(uniqueLetters);
+
+        List<Person> people = Arrays.asList(
+                new Person("Alice", Arrays.asList("Java", "Python")),
+                new Person("Bob", Arrays.asList("C++", "JavaScript"))
+        );
+
+        List<List<String>> distinctLanguages = people.stream()
+                .map(Person::getLanguages)
+                //.flatMap(List::stream)
+                //.distinct()
+                .toList();
 
 
 
