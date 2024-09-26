@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private CustomerRepository customerRepository;
-    private PasswordEncoder passwordEncoder;
+    private final CustomerRepository customerRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {

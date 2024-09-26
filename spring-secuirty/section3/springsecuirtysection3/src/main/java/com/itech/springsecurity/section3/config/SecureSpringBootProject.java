@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,18 +24,18 @@ public class SecureSpringBootProject {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers("myAccount", "/myLoans", "/myCards").authenticated()
-                        .requestMatchers("/contact", "/notice", "/error").permitAll());
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request.requestMatchers("myAccount", "/myLoans", "/myCards").authenticated()
+                        .requestMatchers("/contact", "/notice", "/error","/register").permitAll());
         httpSecurity.formLogin(Customizer.withDefaults());
         httpSecurity.httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
    // it's to create user details in application memory by using below code
-    @Bean
+  /*  @Bean
     public UserDetailsService userDetailsService(DataSource dataSource) {
        return new JdbcUserDetailsManager(dataSource);
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
