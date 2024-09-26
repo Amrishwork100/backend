@@ -1,4 +1,4 @@
-package com.itech.springsecurity.section2.controller;
+package com.itech.springsecurity.section3.controller;
 
 public class LoansController {
 }
