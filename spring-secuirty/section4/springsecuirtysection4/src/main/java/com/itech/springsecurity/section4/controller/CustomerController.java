@@ -1,28 +1,34 @@
 package com.itech.springsecurity.section4.controller;
 
-import com.itech.springsecurity.section4.Respository.CustomerRepository;
+import com.itech.springsecurity.section4.repository.CustomerRepository;
 import com.itech.springsecurity.section4.model.Customer;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequiredArgsConstructor
-public class CustomerController {
+import java.util.ArrayList;
+import java.util.List;
 
-    private final CustomerRepository customerRepository;
-    private final PasswordEncoder passwordEncoder;
+@RestController
+
+public class CustomerController {
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    private List<Customer> list = new ArrayList<>();
 
     @PostMapping("/register")
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+    public List<Customer> createCustomer(@RequestBody Customer customer) {
         String hashPassword = passwordEncoder.encode(customer.getPwd());
         customer.setPwd(hashPassword);
-        Customer savedCustomer = customerRepository.save(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
+        list.add(customer);
+        return list;
+        //Customer savedCustomer = customerRepository.save(customer);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
 
     }
 }

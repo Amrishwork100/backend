@@ -1,35 +1,31 @@
 package com.itech.springsecurity.section4.config;
 
 
-import com.itech.springsecurity.section4.Respository.CustomerRepository;
+import com.itech.springsecurity.section4.repository.CustomerRepository;
 import com.itech.springsecurity.section4.model.Customer;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class EazyBankUserDetailService implements UserDetailsService {
+    @Autowired
+    private  CustomerRepository repository;
 
-    private final CustomerRepository customerRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Customer> customer = customerRepository.findByEmail(email);
-        Customer user = customer.orElseThrow();
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole()));
-        return new User(user.getEmail(), user.getPwd(), authorities);
+        Customer customer = repository.findByEmail(email).orElseThrow(() -> new
+                UsernameNotFoundException("User details not found for the user: " + email));
+        List<SimpleGrantedAuthority> authorities = customer.getAuthorities().stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                .toList();
+        return new User(customer.getEmail(), customer.getPwd(), authorities);
     }
 }

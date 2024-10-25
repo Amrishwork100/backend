@@ -1,6 +1,8 @@
 package com.itech.springsecurity.section4.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,24 +15,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 @Profile("!prod")
+@Setter
 public class EazyBankAuthenticationProvider implements AuthenticationProvider {
 
-
-    private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = authentication.getName();
         String pwd = authentication.getCredentials().toString();
         UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-        if (passwordEncoder.matches(pwd, userDetails.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(userName, pwd, userDetails.getAuthorities());
-        } else {
-            throw new BadCredentialsException("Invalid Password");
-        }
+        return new UsernamePasswordAuthenticationToken(userName, pwd, userDetails.getAuthorities());
+
     }
 
     @Override

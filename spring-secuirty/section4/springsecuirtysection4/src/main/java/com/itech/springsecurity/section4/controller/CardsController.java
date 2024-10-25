@@ -1,13 +1,33 @@
 package com.itech.springsecurity.section4.controller;
 
+import com.itech.springsecurity.section4.repository.CardsRepository;
+import com.itech.springsecurity.section4.model.Cards;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CardsController {
+    @Autowired
+    private CardsRepository cardsRepository;
 
     @GetMapping("/myCards")
-    public String getAccountDetails(){
-        return " Here is my cards details from DB";
+    public List<Cards> getCardDetails(@RequestParam long id) {
+        List<Cards> cards = cardsRepository.findByCustomerId(id);
+        if (cards != null) {
+            return cards;
+        } else {
+            return null;
+        }
     }
+
+    @GetMapping("/cards")
+    public List<Cards> getAllCardsDetails() {
+        return (List<Cards>) cardsRepository.findAll();
+
+    }
+
 }
